@@ -5,7 +5,7 @@ BeforeAfter is a lightweight Javascript library to compare images in before/afte
 
 ## Installation
 
-BeforeAfter is available as the `before-after-react` package on <a href="https://www.npmjs.com/package/roeitest" title="npm before-after-react">npm</a>.
+BeforeAfter is available as the `before-after-react` package on <a href="https://www.npmjs.com/package/before-after-react" title="npm before-after-react">npm</a>.
 
 ```
 npm install before-after-react --save

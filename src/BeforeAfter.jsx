@@ -17,15 +17,16 @@ class BeforeAfter extends Component {
       supportsTouch: "ontouchstart" in window || navigator.msMaxTouchPoints,
       minWidth: 0
     };
+
     this.dragStart = this.dragStart.bind(this);
     this.moveDrag = this.moveDrag.bind(this);
     this.down = this.down.bind(this);
     this.setToLoaded = this.setToLoaded.bind(this);
   }
 
-  componentDidUpdate(prevProps,prevState) {
- const matches = document.querySelectorAll(".before-after-wrap img");
- const minWidth = Math.min(matches[0].naturalWidth, matches[1].naturalWidth);
+  componentDidUpdate(prevProps, prevState) {
+    const matches = document.querySelectorAll(".before-after-wrap img");
+    const minWidth = Math.min(matches[0].naturalWidth, matches[1].naturalWidth);
     if (prevState.minWidth < minWidth) {
       const wrap = this.wrapRef.current;
       wrap.style.width = minWidth + "px";
@@ -50,7 +51,7 @@ class BeforeAfter extends Component {
       false
     );
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     const { supportsTouch } = this.state;
     this.seperatorRef.current.removeEventListener(
       supportsTouch ? "touchstart" : "mousedown",
@@ -79,7 +80,7 @@ class BeforeAfter extends Component {
       isDown: true,
       offset: [
         seperator.offsetLeft -
-          (this.state.supportsTouch ? e.changedTouches[0].pageX : e.clientX)
+        (this.state.supportsTouch ? e.changedTouches[0].pageX : e.clientX)
       ]
     });
   }
@@ -89,7 +90,7 @@ class BeforeAfter extends Component {
     e.preventDefault();
     if (isDown) {
       if (xPos + offset[0] > minWidth || xPos + offset[0] < 0) return;
-      this.seperatorRef.current.style.left = xPos + offset[0] + "px";
+      this.seperatorRef.current.style.transform = "translateX(" + (xPos + offset[0]) + "px)";
       this.diffImgRef.current.style.clipPath =
         "inset(0 0 0 " + (xPos + offset[0]) + "px)";
     }

@@ -1,7 +1,16 @@
 {
-    "name": "roeitest",
-    "version": "1.0.7",
-    "description": "React BeforeAfter Component for npm",
+    "name": "before-after-react",
+    "version": "1.0.1",
+    "description": "Lightweight Javascript library to compare images in before/after view",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/roeib/Before-After-React.git"
+    },
+    "keywords": [
+        "React"
+    ],
+    "author": "Roei Berkovich",
+    "homepage": "https://github.com/roeib/Before-After-React/blob/master/README.md",
     "main": "./lib/BeforeAfter.js",
     "license": "MIT",
     "scripts": {
