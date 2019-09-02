@@ -1,0 +1,67 @@
+.before-after-wrap{
+  position: relative;
+  overflow: hidden;
+  margin:auto;
+  
+}
+.before-after-wrap img{
+  max-width: 100%;
+  display:block;
+}
+.before-after-wrap img:nth-child(2){
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.before-after-wrap .before-after-seperator{
+  position:absolute; 
+ left:50%;
+ top:0;
+ bottom:0;
+ width:4px;
+ margin-left:-2px;
+ background: #fff;
+ cursor: ew-resize;
+}
+
+.before-after-wrap .before-after-seperator:after{
+  position: absolute;
+   top: 50%;
+   width: 64px;
+   height: 64px;
+   margin: -32px 0 0 -32px;
+   content:'\21d4';
+   color:white;
+   font-weight:bold;
+   font-size:36px;
+   text-align:center;
+   line-height:64px;
+   background: #ffb800;
+   border:1px solid #e6a600; 
+   border-radius: 50%;
+   transition:all 0.3s ease;
+   box-shadow:
+     0 2px 6px rgba(0,0,0,.3), 
+     inset 0 2px 0 rgba(255,255,255,.5),
+     inset 0 60px 50px -30px #ffd466;
+}
+.before-after-wrap .before-after-seperator:before{
+  content: "";
+  position: absolute;
+  top: 48%;
+  width: 84px;
+  height: 84px;
+  margin: -32px 0 0 -44px;
+  color: white;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  line-height: 64px;
+  background: transparent;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
