@@ -44,11 +44,7 @@ The component can get:
 * `cursor` - {String} - a valid css cursor value
 
 
-## Callback functions
-
-There is no callback function available with BeforeAfterReact.
-
-### After install the library
+## After install the library
 
 
 ```javascript
@@ -71,6 +67,8 @@ export default App;
 });
 ```
 
+## Known Issues
+-for better preformence- translateX instead of changing left property
 
 
 ### Browsers support
