@@ -17,6 +17,9 @@ npm install before-after-react --save
   <img height="250" src="https://media.giphy.com/media/VCthO4XW9j9p36pFjJ/giphy.gif" />
 </p>
 
+## Live Demo
+<a href="https://codesandbox.io/s/u9p0s" title="beforeafterreact-sandbox" target="_blank">Link to Before-After-Sandbox</a>
+
 ### Basic usage
 
 Import the compnent from npm 
