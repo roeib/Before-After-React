@@ -1,7 +1,7 @@
 
 # Before-After-React
 
-BeforeAfter is a lightweight Javascript library to compare images in before/after view.
+BeforeAfter is a Javascript library to compare images in before/after view.
 
 ## Installation
 
