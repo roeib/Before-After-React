@@ -18,7 +18,7 @@ npm install before-after-react --save
 </p>
 
 ## Live Demo
-<a href="https://codesandbox.io/s/u9p0s" title="beforeafterreact-sandbox" target="_blank">Link to Before-After-Sandbox</a>
+<a href="https://codesandbox.io/s/u9p0s" title="beforeafterreact-sandbox" target="_blank">Before-After-React Sandbox- live demo</a>
 
 ### Basic usage
 
