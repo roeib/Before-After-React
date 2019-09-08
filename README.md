@@ -22,9 +22,9 @@ npm install before-after-react --save
 
 ### Basic usage
 
-Import the compnent from npm 
-and just add it to your JSX even without any props the component still work.
-the component have default images.
+Import the component from node_modules 
+and just add it to your JSX even without any props the component still works.
+The component has default images.
 ```javascript
 import React from 'react';
 import BeforeAfterReact from 'before-after-react'
