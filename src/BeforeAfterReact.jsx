@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import "./BeforeAfter.css";
-import before from "./assets/before.png";
-import after from "./assets/after.png";
+import "./BeforeAfterReact.css";
 
 class BeforeAfter extends Component {
   constructor(props) {
@@ -9,6 +7,7 @@ class BeforeAfter extends Component {
     this.seperatorRef = React.createRef();
     this.wrapRef = React.createRef();
     this.diffImgRef = React.createRef();
+    this.resize = React.createRef();
 
     this.state = {
       imgLoaded: false,
@@ -30,6 +29,7 @@ class BeforeAfter extends Component {
     if (prevState.minWidth < minWidth) {
       const wrap = this.wrapRef.current;
       wrap.style.width = minWidth + "px";
+      this.diffImgRef.current.style.width = minWidth + "px";
       this.setState({ minWidth });
     }
   }
@@ -55,21 +55,17 @@ class BeforeAfter extends Component {
     const { supportsTouch } = this.state;
     this.seperatorRef.current.removeEventListener(
       supportsTouch ? "touchstart" : "mousedown",
-      this.dragStart,
-      false
+      this.dragStart
     );
     document.removeEventListener(
       supportsTouch ? "touchend" : "mouseup",
-      this.down,
-      false
+      this.down
     );
     document.removeEventListener(
       supportsTouch ? "touchmove" : "mousemove",
-      this.moveDrag,
-      false
+      this.moveDrag
     );
   }
-
 
   down() {
     this.setState({ isDown: false });
@@ -80,20 +76,41 @@ class BeforeAfter extends Component {
       isDown: true,
       offset: [
         seperator.offsetLeft -
-        (this.state.supportsTouch ? e.changedTouches[0].pageX : e.clientX)
+        (this.state.supportsTouch ? e.changedTouches[0].pageX : e.clientX),
+        seperator.offsetTop -
+        (this.state.supportsTouch ? e.changedTouches[0].pageY : e.clientY)
       ]
     });
   }
   moveDrag(e) {
-    const { offset, isDown, minWidth } = this.state;
-    let xPos = this.state.supportsTouch ? e.changedTouches[0].pageX : e.clientX;
     e.preventDefault();
-    if (isDown) {
-      if (xPos + offset[0] > minWidth || xPos + offset[0] < 0) return;
-      this.seperatorRef.current.style.transform = "translateX(" + (xPos + offset[0]) + "px)";
-      this.diffImgRef.current.style.clipPath =
-        "inset(0 0 0 " + (xPos + offset[0]) + "px)";
+    const { isDown, supportsTouch } = this.state;
+    if (!isDown) return;
+
+    const YPos = supportsTouch ? e.changedTouches[0].pageY : e.clientY;
+    const xPos = supportsTouch ? e.changedTouches[0].pageX : e.clientX;
+
+    if (this.props.vertical) {
+      this.handleVertical(YPos);
+    } else {
+      this.handleHorizontal(xPos);
     }
+  }
+
+  handleVertical(YPos) {
+    const { offset, minWidth } = this.state;
+    const isOutOfRangeY = YPos + offset[1] > minWidth || YPos + offset[1] < 0;
+    if (isOutOfRangeY) return;
+    this.seperatorRef.current.style.top = YPos + offset[1] + "px";
+    this.resize.current.style.height = YPos + offset[1] + "px";
+  }
+
+  handleHorizontal(xPos) {
+    const { offset, minWidth } = this.state;
+    const isOutOfRangeX = xPos + offset[0] > minWidth || xPos + offset[0] < 0;
+    if (isOutOfRangeX) return;
+    this.seperatorRef.current.style.left = xPos + offset[0] + "px";
+    this.resize.current.style.width = xPos + offset[0] + "px";
   }
 
   setToLoaded() {
@@ -101,32 +118,55 @@ class BeforeAfter extends Component {
   }
 
   render() {
-    const { firstImgSrc, secondImgSrc, containerClass, cursor } = this.props;
+    const {
+      firstImgSrc,
+      secondImgSrc,
+      containerClass,
+      cursor,
+      seperatorImg
+    } = this.props;
     return (
       <div
         ref={this.wrapRef}
         className={`before-after-wrap ${containerClass ? containerClass : ""}`}
       >
         <img onLoad={this.setToLoaded} src={firstImgSrc} alt="left" />
-        <img
-          onLoad={this.setToLoaded}
-          ref={this.diffImgRef}
-          style={{ clipPath: "inset(0 0 0 50%)" }}
-          src={secondImgSrc}
-          alt="right"
-        />
+
+        <div
+          className={`resize ${
+            this.props.vertical ? "vertical" : "horizontal"
+            }`}
+          ref={this.resize}
+        >
+          <img
+            onLoad={this.setToLoaded}
+            ref={this.diffImgRef}
+            src={secondImgSrc}
+            alt="right"
+          />
+        </div>
         <div
           ref={this.seperatorRef}
           style={{ cursor: cursor }}
-          className="before-after-seperator"
-        />
+          className={`before-after-seperator ${
+            this.props.vertical ? "vertical" : "horizontal"
+            }`}
+        >
+          <img
+            className={`before-after-seperator-img ${
+              this.props.vertical ? "vertical" : "horizontal"
+              }`}
+            src={seperatorImg}
+          />
+        </div>
       </div>
     );
   }
 }
 BeforeAfter.defaultProps = {
-  firstImgSrc: before,
-  secondImgSrc: after
+  firstImgSrc: "https://upload.wikimedia.org/wikipedia/commons/2/21/Gallet_clamshell_600x600_7.jpg",
+  secondImgSrc:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Gallet_clamshell_600x600_1.jpg",
+  seperatorImg:"https://cdn.pixabay.com/photo/2016/09/05/10/51/app-1646220_960_720.png"
 };
 
 export default BeforeAfter;

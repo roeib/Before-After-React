@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/BeforeAfter.jsx',
+    entry: './src/BeforeAfterReact.jsx',
     output: {
         path: path.resolve('lib'),
-        filename: 'BeforeAfter.js',
+        filename: 'BeforeAfterReact.js',
         libraryTarget: 'commonjs2'
     },
     module: {

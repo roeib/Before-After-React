@@ -45,9 +45,15 @@ The component can get:
 * `secondImgSrc` - {String} -image src
 * `containerClass` - {String} - add your own class to the container
 * `cursor` - {String} - a valid css cursor value
+* `vertical` - {Boolean} - default is false
+* `seperatorImg` - {String} - image src
 
 
-## After install the library
+## Callback functions
+
+There is no callback function available with BeforeAfterReact.
+
+### After install the library
 
 
 ```javascript
@@ -70,11 +76,3 @@ export default App;
 });
 ```
 
-## Known Issues
--for better preformence- translateX instead of changing left property
-
-
-### Browsers support
-
-BeforeAfterReact is compatible with all no-touch and touch devices such as Android or iOS. 
-The library usee clip-path so  you can check up for browsers suppore here <a href="https://caniuse.com/#search=clip%20path" title="Can I Use" target="_blank">Can I Use</a>

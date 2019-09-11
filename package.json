@@ -1,7 +1,7 @@
 {
     "name": "before-after-react",
-    "version": "1.0.1",
-    "description": "Lightweight Javascript library to compare images in before/after view",
+    "version": "1.0.5",
+    "description": "React package to compare images in before/after view",
     "repository": {
         "type": "git",
         "url": "https://github.com/roeib/Before-After-React.git"
@@ -11,7 +11,7 @@
     ],
     "author": "Roei Berkovich",
     "homepage": "https://github.com/roeib/Before-After-React/blob/master/README.md",
-    "main": "./lib/BeforeAfter.js",
+    "main": "./lib/BeforeAfterReact.js",
     "license": "MIT",
     "scripts": {
         "build": "webpack"
@@ -35,7 +35,6 @@
     },
     "dependencies": {
         "css-loader": "^3.2.0",
-        "prop-types": "^15.7.2",
         "style-loader": "^1.0.0"
     }
 }
